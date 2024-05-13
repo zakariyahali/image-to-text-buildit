@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Image Text Extractor</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+    }
+    .content {
+      flex: 1;
+    }
+    .navbar {
+      background-color: #34568B; /* Rich blue */
+    }
+    .btn-primary {
+      background-color: #88B04B; /* Leaf green */
+      border-color: #88B04B;
+    }
+    .form-label {
+      color: #34568B; /* Keeping the label color in theme */
+    }
+    .logo {
+      max-width: 30%; /* Ensure logo is not wider than the column */
+      height: auto; /* Maintain aspect ratio */
+      padding: 20px; /* Add some space around the logo */
+    }
+    .footer {
+      color: black;
+      text-align: center;
+      padding: 10px 0;
+      width: 100%;
+    }
+  </style>
+</head>
+
+
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand mx-auto" href="#">Image Text Extractor</a>
+      <div class="navbar-text text-light">
+        Made by @1stcodingjob YouTube
+      </div>
+    </div>
+  </nav>
+
+  <div class="container content mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow-sm p-4 mb-4 bg-white">
+          <h3 class="mb-3 text-center">Upload Your Image</h3>
+          <form action="/" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+              <label for="image_upload" class="form-label"><b>Upload Image</b></label>
+              <input class="form-control" type="file" id="image_upload" name="image_upload" />
+            </div>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">Extract</button>
+            </div>
+          </form>
+          {% if text %}
+            <h5 class="mt-4">Extracted Text:</h5>
+            {% for i in text %}
+            <p>{{ i }}</p>
+            {% endfor %}
+          {% endif %}
+        </div>
+        {% if img_url %}
+        <div class="text-center">
+          <img src="{{ img_url }}" class="img-fluid" alt="Uploaded Image">
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="text-center mt-4">
+      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="img-fluid logo">
+    </div>
+    <div class="container">
+      <span>&copy; 2024 First Coding Job. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
